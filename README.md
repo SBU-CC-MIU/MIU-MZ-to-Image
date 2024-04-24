@@ -1,5 +1,5 @@
 <header>
-Generating Images from MALDI Spectroscopy Data
+## Generating Images from MALDI Spectroscopy Data
   
 <!--
   <<< Author notes: Course header >>>
