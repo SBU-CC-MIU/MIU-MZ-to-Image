@@ -1,5 +1,6 @@
 <header>
 Generating Images from MALDI Spectroscopy Data
+  
 <!--
   <<< Author notes: Course header >>>
   Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
@@ -7,8 +8,11 @@ Generating Images from MALDI Spectroscopy Data
   Add your open source license, GitHub uses MIT license.
 -->
 Three CSV files are needed to run this program:
+
 (1) Raw MALDI spectra data, e.g., 230615PyMT-Fat-CMC-DHB-Pos-1-PyMT-Spectra-TIC.csv
+
 (2) A file of region spots, e.g., 230615PyMT-Fat-CMC-DHB-Pos-1-RegionSpots.csv
+
 (3) A mass list, e.g., MassList-230615PyMT-Fat-CMC-DHB-Pos-1-PyMT.csv
 
 To run the program, first type:
