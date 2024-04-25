@@ -13,17 +13,20 @@ Three CSV files are needed to run this program:
 
 (3) A mass list, e.g., MassList-230615PyMT-Fat-CMC-DHB-Pos-1-PyMT.csv
 
-## How to run the program,
+## How to run the program:
 
-First, type:
+First, type
 
-_python select_mz_args.py_
-
+```bash
+python select_mz_args.py
+```
 The program will ask for spectroscopy data and a mass list. Follow the instruction and provide the file names. It may take 10 - 30 minuites. Several temporary files will be generated for the next step.
 
 Then, type:
 
-_python use_gen_map_args.py_
+```bash
+python use_gen_map_args.py
+```
 
 The program will ask for a file containing region spots. Simply provide the file name.
 
