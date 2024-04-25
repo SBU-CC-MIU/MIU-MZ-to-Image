@@ -1,12 +1,9 @@
-<header>
-Generating Images from MALDI Spectroscopy Data
-<header>  
-<!--
-  <<< Author notes: Course header >>>
-  Include a 1280×640 image, course title in sentence case, and a concise description in emphasis.
-  In your repository settings: enable template repository, add your 1280×640 social image, auto delete head branches.
-  Add your open source license, GitHub uses MIT license.
--->
+# Generating Images from MALDI Spectroscopy Data
+
+### Contact:
+email: xiaolu.cheng@stonybrookmedicine.edu
+
+## What files are needed:
 
 Three CSV files are needed to run this program:
 
@@ -16,16 +13,17 @@ Three CSV files are needed to run this program:
 
 (3) A mass list, e.g., MassList-230615PyMT-Fat-CMC-DHB-Pos-1-PyMT.csv
 
-To run the program, first type:
+## How to run the program,
 
-python select_mz_args.py
+First, type:
 
-The program will ask for spectroscopy data and a mass list. Follow the instruction and provide the file names. It may take 10 - 30 minuites.
-Several temporary files will be generated for the next step.
+_python select_mz_args.py_
+
+The program will ask for spectroscopy data and a mass list. Follow the instruction and provide the file names. It may take 10 - 30 minuites. Several temporary files will be generated for the next step.
 
 Then, type:
 
-python use_gen_map_args.py
+_python use_gen_map_args.py_
 
 The program will ask for a file containing region spots. Simply provide the file name.
 
