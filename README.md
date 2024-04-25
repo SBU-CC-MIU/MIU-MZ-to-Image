@@ -32,3 +32,19 @@ The program will ask for a file containing region spots. Simply provide the file
 
 Images then will be generated in a folder called "figs".
 
+## Structure required for the MastList.csv file
+
+The program will read comma-separated values (CSV) files with the following columns:
+```bash
+Masses from LIPID MAPS,	Sphingolipid profile,		,Common Name,		,Adduct ion  (#notice two empty columns)
+```
+
+Example:
+
+```bash
+Masses from LIPID MAPS,Sphingolipid profile,,Common Name,,Adduct ion
+300.2897,Sphingosine,,Sphingosine (d18:1),,M+H
+302.3053,Dihydrosphingosine,,Dihydrosphingosine (d18:0),,M+H
+703.5748,C16-SM,,SM(d18:1/16:0),,M+H
+725.5568,C16-SM,,SM(d18:1/16:0),,M+Na
+```
