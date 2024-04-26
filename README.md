@@ -32,11 +32,11 @@ The program will ask for a file containing region spots. Simply provide the file
 
 Images then will be generated in a folder called "figs".
 
-## Structure required for the MastList.csv file
+## Structure required for the MassList.csv file
 
 The program will read comma-separated values (CSV) files with the following columns:
 ```bash
-Masses from LIPID MAPS,	Sphingolipid profile,		,Common Name,		,Adduct ion  (#notice two empty columns)
+Masses from LIPID MAPS,	Sphingolipid profile, Common Name, Adduct ion  
 ```
 
 Example:
@@ -52,6 +52,14 @@ Masses from LIPID MAPS,Sphingolipid profile,,Common Name,,Adduct ion
 ## Structure required for the RegionSpots.csv file.
 
 ```bash
+
+# (comments and metadata)
+
 Spot index;x;y
 0;3438.2888183594;9799.4345703125
+1;3478.2888183594;9799.4345703125
+2;3518.2888183594;9799.4345703125
+3;3318.2888183594;9759.4345703125
+4;3358.2888183594;9759.4345703125
 ```
+The index relates the position x,y in the Spectra file. Note: The index in the RegionSpots.cvs begins from 0; but in the Spectra file, the index begins from 1. So, spot index 0 in RegionSpots actually corresponds to spot 1 in the Spectra file. When these two data frames are merged, we then have an XY position for a point and the spectra for that point.
