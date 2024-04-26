@@ -49,7 +49,7 @@ Masses from LIPID MAPS,Sphingolipid profile,,Common Name,,Adduct ion
 725.5568,C16-SM,,SM(d18:1/16:0),,M+Na
 ```
 
-# Structure required for the RegionSpots.csv file.
+## Structure required for the RegionSpots.csv file.
 
 ```bash
 Spot index;x;y
