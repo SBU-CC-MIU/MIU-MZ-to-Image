@@ -62,4 +62,22 @@ Spot index;x;y
 3;3318.2888183594;9759.4345703125
 4;3358.2888183594;9759.4345703125
 ```
-The index relates the position x,y in the Spectra file. Note: The index in the RegionSpots.cvs begins from 0; but in the Spectra file, the index begins from 1. So, spot index 0 in RegionSpots actually corresponds to spot 1 in the Spectra file. When these two data frames are merged, we then have an XY position for a point and the spectra for that point.
+The index relates the position x,y in the Spectra file. Note: The index in the RegionSpots.cvs begins from 0; but in the Spectra file, the index begins from 1. So, spot index 0 in RegionSpots actually corresponds to spot 1 in the Spectra file. When these two data frames are merged, we then have an (X,Y) position for a point and the spectra for that point.
+
+
+## Structure of the Spectra file
+
+```bash
+
+# (comments and metadata)
+m/z;300;300.00150000075;300.003000009;300.00450002475;300.00600004801;300.00750007876;300.00900011701;300.01050016276;300.01200021601; ...
+Spot 1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+Spot 2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;356.53662416509;0;0;0;0;0;0;
+Spot 3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;142.80817433434;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+...
+Spot 36050;0;0;0;0;0;0;0;0;0;0;17.420674348041;0;0;0;0;0;0;0;0;0;0;0;0;21.58083538638;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+Spot 36051;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;73.652558664859;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+```
+
+This file contains a Table where columns are the list of m/z, and rows contain an index (Spot #). For each m/z x index, the table contains the Intensity of the signal.
+The index can be used in RegionSpots.csv to find the position (X,Y) in the sample
