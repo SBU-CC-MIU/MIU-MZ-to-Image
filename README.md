@@ -1,4 +1,4 @@
-# Generating Images from MALDI Spectroscopy Data
+# Generating Images from MALDI Spectroscopy Data for a given list of compounds
 
 ### Contact:
 email: xiaolu.cheng@stonybrookmedicine.edu
