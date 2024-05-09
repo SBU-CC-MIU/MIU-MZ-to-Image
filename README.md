@@ -32,6 +32,9 @@ The program will ask for a file containing region spots. Simply provide the file
 
 Images then will be generated in a folder called "figs".
 
+## Example output:
+![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/3_SM(d18-1-16-0)%2BH.jpg)
+
 ## Structure required for the MassList.csv file
 
 The program will read comma-separated values (CSV) files with the following columns:
@@ -65,7 +68,7 @@ Spot index;x;y
 The index relates the position x,y in the Spectra file. Note: The index in the RegionSpots.cvs begins from 0; but in the Spectra file, the index begins from 1. So, spot index 0 in RegionSpots actually corresponds to spot 1 in the Spectra file. When these two data frames are merged, we then have an (X,Y) position for a point and the spectra for that point.
 
 
-## Structure of the Spectra file
+## Structure of the Spectra.csv file
 
 ```bash
 
