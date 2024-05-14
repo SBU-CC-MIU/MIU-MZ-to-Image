@@ -29,6 +29,7 @@ for j in range(1, len(mz)):
     mz[j] = float(mz[j])
 
 masses = pd.read_csv(mass_file)
+masses.sort_values(by=['Masses from LIPID MAPS'], ascending = True, inplace = True)
 
 out = pd.DataFrame(columns = ["Masses from LIPID MAPS", "Measured m/z", "m/z index", "Sphingolipid profile", "Common Name", "Adduct ion"])
 
