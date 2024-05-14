@@ -33,7 +33,7 @@ The program will ask for a file containing region spots. Simply provide the file
 Images then will be generated in a folder called "figs".
 
 ## Example output:
-![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/3_SM(d18-1-16-0)%2BH.jpg)
+![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/11_SM(d18-1-16-0)%2BH.jpg)
 
 ## Structure required for the MassList.csv file
 
