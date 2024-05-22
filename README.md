@@ -21,6 +21,13 @@ First, type
 python select_mz_args.py
 ```
 The program will ask for spectroscopy data and a mass list. Follow the instruction and provide the file names. It may take 10 - 30 minuites. Several temporary files will be generated for the next step.
+Temporary files:
+
+  m/z, large file (few MB)
+  
+  masses_ind.csv, a csv file containing a table with Masses from LIPID MAPS,Measured m/z,m/z index,Sphingolipid profile,Common Name,Adduct ion
+  
+  mz_data.csv, a csv file containing a table with m/z vs index, and values are intensity from MS
 
 Then, type:
 
