@@ -2,6 +2,7 @@
 
 ### Contact:
 email: xiaolu.cheng@stonybrookmedicine.edu
+
 MIU@StonyBrookMedicine.edu
 
 ## What files are needed:
@@ -16,29 +17,16 @@ Three CSV files are needed to run this program:
 
 ## How to run the program:
 
-First, type
+Install python. It's recommended to use Anaconda (https://www.anaconda.com/download/success).
+
+Open an terminal and type
 
 ```bash
-python select_mz_args.py
+python run_mz2image.py
 ```
-The program will ask for spectroscopy data and a mass list. Follow the instruction and provide the file names. It may take 10 - 30 minuites. Several temporary files will be generated for the next step.
-Temporary files:
+The program will ask for spectroscopy data, a file containing region spots, and a mass list. Follow the instruction and provide the file names, the separator of the CSV file, and the image type. It may take 10 - 30 minuites. Several temporary files will be generated.
 
-  m/z, large file (few MB)
-  
-  masses_ind.csv, a csv file containing a table with Masses from LIPID MAPS,Measured m/z,m/z index,Sphingolipid profile,Common Name,Adduct ion
-  
-  mz_data.csv, a csv file containing a table with m/z vs index, and values are intensity from MS
-
-Then, type:
-
-```bash
-python use_gen_map_args.py
-```
-
-The program will ask for a file containing region spots. Simply provide the file name.
-
-Images then will be generated in a folder called "figs".
+Images then will be generated in a folder called "results". Correlations and clustering results will be saved in the same folder.
 
 ## Example output:
 ![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/11_SM(d18-1-16-0)%2BH.jpg)
