@@ -19,7 +19,7 @@ Three CSV files are needed to run this program:
 
 Install python. It's recommended to use Anaconda (https://www.anaconda.com/download/success).
 
-Open an terminal and type
+Open a terminal and type
 
 ```bash
 python run_mz2image.py
