@@ -5,6 +5,8 @@ from tkinter import filedialog
 import pandas as pd
 from select_mz_gui import select_mz
 from use_gen_map_gui import use_gen_map
+from use_gen_map_addup_ions import use_gen_map_addup_ions
+import time
 
 ## root window
 root = Tk()
@@ -15,6 +17,7 @@ mainframe = ttk.Frame(root, padding="3 3 12 12")
 mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
+
 
 ## row 1
 ttk.Label(mainframe, text="Three CSV files are needed:").grid(column=1, row=1, sticky=W)
@@ -134,9 +137,23 @@ def set_sep3(event):
 
 sep3.bind("<<ComboboxSelected>>", set_sep3)
 
-## row 8 empty
+## row 8
+ttk.Label(mainframe, text="Output Folder").grid(column=1, row=8, sticky=W)
 
 ## row 9
+outfolder=ttk.Entry(mainframe)
+outfolder.grid(row=9,column=1, sticky=W)
+
+folder_name = ""
+def browsefunc4():
+    global folder_name
+    filename = filedialog.askdirectory()
+    outfolder.insert(END, filename) # add this
+    folder_name = filename
+
+
+b4=ttk.Button(mainframe,text="Browse",command=browsefunc4)
+b4.grid(row=9,column=2, sticky=W)
 
 ttk.Label(mainframe, text="Output image type").grid(column=3, row=9, sticky=W)
 
@@ -156,7 +173,26 @@ def set_out(event):
 out.bind("<<ComboboxSelected>>", set_out)
 
 
-## last row
+## row 10
+ttk.Label(mainframe, text="Combine data for different adduct ions").grid(column=1, row=10, sticky=W)
+
+yes_or_no = StringVar()
+choice = ttk.Combobox(mainframe, textvariable=yes_or_no)
+choice.grid(column=2, row=10, sticky=W)
+
+
+choice['values'] = ('yes', 'no')
+choice.state(["readonly"])
+
+yes_or_no = False
+def set_choice(event):
+    global yes_or_no
+    if choice.get() == "yes":
+        yes_or_no = True
+
+choice.bind("<<ComboboxSelected>>", set_choice)
+
+
 def open_csv():
     print(spectra_sep, spot_sep, mass_sep)
     df = pd.read_csv(spectra_file, sep = spectra_sep)
@@ -171,6 +207,12 @@ def pr():
 
 
 def run_function():
+    
+    #s.configure('TProgressbar', text = '10 %')
+    progressbar['value'] = 10
+    root.update_idletasks()
+    time.sleep(0.5)
+
     temp_spec = spectra_file[:-4] + "_ind.csv"
     temp_mass = mass_file[:-4] + "_ind.csv"
     
@@ -178,13 +220,34 @@ def run_function():
 
         select_mz(spec_file = spectra_file, mass_file = mass_file, mass_sep = mass_sep)
     
-    use_gen_map(spectra_filename = temp_spec, spots_filename = spot_file, mass_filename = temp_mass, mass_sep = mass_sep, outputtype = outputtype)
+    #s.configure('TProgressbar', text = '50 %')
+    progressbar['value'] = 50
+    root.update_idletasks()
+    time.sleep(1)
+
+    if yes_or_no:
+        use_gen_map_addup_ions(spectra_filename = temp_spec, spots_filename = spot_file, mass_filename = temp_mass, mass_sep = mass_sep, out_dir = folder_name, outputtype = outputtype)
+    else:
+        use_gen_map(spectra_filename = temp_spec, spots_filename = spot_file, mass_filename = temp_mass, mass_sep = mass_sep, out_dir = folder_name, outputtype = outputtype)
+    
+    #s.configure('TProgressbar', text = '100 %')
+    progressbar['value'] = 100
+    root.update_idletasks()
     print("Completed. You can quit now.")
     exit
 
-ttk.Button(mainframe, text="Run", command=run_function).grid(column=2, row=10, sticky=W)
+#s = ttk.Style()
+#s.theme_use("default")
+#s.configure("TProgressbar", thickness=20)
+#progressbar = ttk.Progressbar(mainframe, variable = 0, maximum = 100, length = 200, mode = 'determinate', style = 'TProgressbar')
+progressbar = ttk.Progressbar(mainframe, length = 200, mode = 'determinate')
+progressbar.grid(column=2, row = 12)
+#progressbar.pack(ipady = 10)
 
-ttk.Button(mainframe, text="Quit", command=root.destroy).grid(column=2, row=11)
+ttk.Button(mainframe, text="Run", command=run_function).grid(column=2, row=11)
+
+
+ttk.Button(mainframe, text="Quit", command=root.destroy).grid(column=2, row=13)
 
 
 

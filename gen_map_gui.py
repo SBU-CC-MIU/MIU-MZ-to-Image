@@ -23,17 +23,22 @@ def gen_map(index, mz_data_filename, region_spots_filename, spectra_sep = ",", s
 
     # this is the output map
     map = np.zeros((ygrids, xgrids))
-
-    # value of the 95 percentile
-    if sum(com.iloc[:, 4] > 0) < 10:
-        return [map, 0]
-    v95 = np.percentile(com.iloc[:, 4][com.iloc[:, 4] > 0], 95)
+    
+    # part with no data, set to NA
+    for j3 in range(ygrids):
+        for k3 in range(xgrids):
+            map[j3, k3] = np.nan
 
     # build the map
     for j2 in range(len(com)):
         x = round((com['x'][j2] - xmin) / space)
         y = round((com['y'][j2] - ymin) / space)
         map[y, x] = com.iloc[j2, 4]
-
+    
+    # value of the 95 percentile
     print("output is [map, v95]")
+    if sum(com.iloc[:, 4] > 0) < 10:
+        return [map, 0]
+    v95 = np.percentile(com.iloc[:, 4][com.iloc[:, 4] > 0], 95)
+
     return [map, v95]
