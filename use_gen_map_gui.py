@@ -41,7 +41,7 @@ def use_gen_map(spectra_filename, spots_filename, mass_filename, spectra_sep = '
             
 
             plt.figure(figsize=(6.4, 5.2))
-            ax = sn.heatmap(added_map, vmax = v95_max, square = True, cmap = 'nipy_spectral')
+            ax = sn.heatmap(added_map, vmax = v95_max, square = True, cmap = 'rainbow')
             plt.ylim(0, added_map.shape[0])
             title = "m/z: " + str(round(masses.iloc[j, 0], 4)) + '\n' + masses.iloc[j, 4] + masses.iloc[j, 5][1:]
             print(j, title)
@@ -85,7 +85,7 @@ def use_gen_map(spectra_filename, spots_filename, mass_filename, spectra_sep = '
             if v95_max > 0:
                 maps_all[masses.iloc[j, 4] + masses.iloc[j, 5][1:]] = after_noise
             
-            ax = sn.heatmap(after_noise, vmax = v95_max, square = True, cmap = 'nipy_spectral')
+            ax = sn.heatmap(after_noise, vmax = v95_max, square = True, cmap = 'rainbow')
             plt.ylim(0, added_map.shape[0])
             title = "m/z: " + str(round(masses.iloc[j, 0], 4)) + '\n' + masses.iloc[j, 4] + masses.iloc[j, 5][1:]
             #print(j, title)
