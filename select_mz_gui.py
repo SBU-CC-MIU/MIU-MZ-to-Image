@@ -70,9 +70,8 @@ def select_mz(spec_file, mass_file, spec_sep = ';', mass_sep = ','):
     select_mz = pd.read_csv(spec_file, sep = spec_sep, comment = "#",  usecols = new_col, low_memory=False, chunksize=chunk_size)
 
     for chunk in select_mz:
-        process_chunk(chunk)
+        select_mz.to_csv(temp_name2, sep = spec_sep, index = False)
     
     temp_name2 = spec_file[:-4] + "_ind.csv"
-    select_mz.to_csv(temp_name2, sep = spec_sep, index = False)
     
     print("Selected spectroscopy data is written in " + temp_name + ".")
