@@ -64,8 +64,13 @@ def select_mz(spec_file, mass_file, spec_sep = ';', mass_sep = ','):
     
     new_col =[0]
     new_col.extend(out["m/z index"])
+
+    chunk_size = 10000
     
-    select_mz = pd.read_csv(spec_file, sep = spec_sep, comment = "#",  usecols = new_col, low_memory=False)
+    select_mz = pd.read_csv(spec_file, sep = spec_sep, comment = "#",  usecols = new_col, low_memory=False, chunksize=chunk_size)
+
+    for chunk in select_mz:
+        process_chunk(chunk)
     
     temp_name2 = spec_file[:-4] + "_ind.csv"
     select_mz.to_csv(temp_name2, sep = spec_sep, index = False)
