@@ -1,48 +1,82 @@
+# Generating Images from MALDI Spectroscopy Data for a given list of compounds
+
+### Contact:
+email: xiaolu.cheng@stonybrookmedicine.edu
+
+MIU@StonyBrookMedicine.edu
+
+## What files are needed:
+
+Three CSV files are needed to run this program:
+
+(1) Raw MALDI spectra data, e.g., 230615PyMT-Fat-CMC-DHB-Pos-1-PyMT-Spectra-TIC.csv
+
+(2) A file of region spots, e.g., 230615PyMT-Fat-CMC-DHB-Pos-1-RegionSpots.csv
+
+(3) A mass list, e.g., MassList-230615PyMT-Fat-CMC-DHB-Pos-1-PyMT.csv
+
+## How to run the program:
+
+Install python. It's recommended to use Anaconda (https://www.anaconda.com/download/success).
+
+Open a terminal and type
+
+```bash
+python run_mz2image.py
+```
+The program will ask for spectroscopy data, a file containing region spots, and a mass list. Follow the instruction and provide the file names, the separator of the CSV file, and the image type. It may take 10 - 30 minuites. Several temporary files will be generated.
+
+Images then will be generated in a folder called "results". Correlations and clustering results will be saved in the same folder.
+
+## Example output:
+![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/11_SM(d18-1-16-0)%2BH.jpg)
+
+## Structure required for the MassList.csv file
+
+The program will read comma-separated values (CSV) files with the following columns:
+```bash
+Masses from LIPID MAPS,	Sphingolipid profile, Common Name, Adduct ion  
+```
+
+Example:
+
+```bash
+Masses from LIPID MAPS,Sphingolipid profile,,Common Name,,Adduct ion
+300.2897,Sphingosine,,Sphingosine (d18:1),,M+H
+302.3053,Dihydrosphingosine,,Dihydrosphingosine (d18:0),,M+H
+703.5748,C16-SM,,SM(d18:1/16:0),,M+H
+725.5568,C16-SM,,SM(d18:1/16:0),,M+Na
+```
+
+## Structure required for the RegionSpots.csv file.
+
+```bash
+
+# (comments and metadata)
+
+Spot index;x;y
+0;3438.2888183594;9799.4345703125
+1;3478.2888183594;9799.4345703125
+2;3518.2888183594;9799.4345703125
+3;3318.2888183594;9759.4345703125
+4;3358.2888183594;9759.4345703125
+```
+The index relates the position x,y in the Spectra file. Note: The index in the RegionSpots.cvs begins from 0; but in the Spectra file, the index begins from 1. So, spot index 0 in RegionSpots actually corresponds to spot 1 in the Spectra file. When these two data frames are merged, we then have an (X,Y) position for a point and the spectra for that point.
 
 
-<!--
-  <<< Author notes: Step 3 >>>
-  Just a historic note: the previous version of this step forced the learner
-  to write a pull request description,
-  checked that `main` was the receiving branch,
-  and that the file was named correctly.
--->
+## Structure of the Spectra.csv file
 
-## Step 3: Open a pull request
+```bash
 
-_Nice work making that commit! :sparkles:_
+# (comments and metadata)
+m/z;300;300.00150000075;300.003000009;300.00450002475;300.00600004801;300.00750007876;300.00900011701;300.01050016276;300.01200021601; ...
+Spot 1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;
+Spot 2;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;356.53662416509;0;0;0;0;0;0;
+Spot 3;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;142.80817433434;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+...
+Spot 36050;0;0;0;0;0;0;0;0;0;0;17.420674348041;0;0;0;0;0;0;0;0;0;0;0;0;21.58083538638;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+Spot 36051;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;73.652558664859;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;35.766609604734;0;0;0;0;0;0;0;0;0;
+```
 
-Now that you have made a change to the project and created a commit, it’s time to share your proposed change through a pull request!
-
-**What is a pull request?**: Collaboration happens on a _[pull request](https://docs.github.com/en/get-started/quickstart/github-glossary#pull-request)_. The pull request shows the changes in your branch to other people and allows people to accept, reject, or suggest additional changes to your branch. In a side by side comparison, this pull request is going to keep the changes you just made on your branch and propose applying them to the `main` project branch. For more information about pull requests, see "[About pull requests](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)".
-
-### :keyboard: Activity: Create a pull request
-
-You may have noticed after your commit that a message displayed indicating your recent push to your branch and providing a button that says **Compare & pull request**.
-
-![screenshot of message and button](/images/compare-and-pull-request.png)
-
-To create a pull request automatically, click **Compare & pull request**, and then skip to step 6 below. If you don't click the button, the instructions below walk you through manually setting up the pull request.
-
-1. Click on the **Pull requests** tab in the header menu of your repository.
-2. Click **New pull request**.
-3. In the **base:** dropdown, make sure **main** is selected.
-4. Select the **compare:** dropdown, and click `my-first-branch`.
-
-   <img alt="screenshot showing both branch selections" src="/images/pull-request-branches.png" />
-
-5. Click **Create pull request**.
-6. Enter a title for your pull request. By default, the title will automatically be the name of your branch. For this exercise, let's edit the field to say `Add my first file`.
-7. The next field helps you provide a description of the changes you made. Here, you can add a description of what you’ve accomplished so far. As a reminder, you have: created a new branch, created a file, and made a commit.
-
-   <img alt="screenshot showing pull request" src="/images/Pull-request-description.png" />
-
-8. Click **Create pull request**. You will automatically be navigated to your new pull request.
-9. Wait about 20 seconds then refresh this page (the one you're following instructions from). [GitHub Actions](https://docs.github.com/en/actions) will automatically update to the next step.
-
-> [!NOTE]
-> You may see evidence of GitHub Actions running on the tab with the pull request opened! The image below shows a line you might see on your pull request after the Action finishes running.
-> 
-> <img alt="screenshot of an example of an actions line" src="/images/Actions-to-step-4.png"/>
-
-
+This file contains a Table where columns are the list of m/z, and rows contain an index (Spot #). For each m/z x index, the table contains the Intensity of the signal.
+The index can be used in RegionSpots.csv to find the position (X,Y) in the sample
