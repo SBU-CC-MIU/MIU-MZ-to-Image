@@ -7,6 +7,7 @@ from select_mz_gui import select_mz
 from use_gen_map_gui import use_gen_map
 from use_gen_map_addup_ions import use_gen_map_addup_ions
 import time
+from calc_corr import correlation
 
 ## root window
 root = Tk()
@@ -138,7 +139,7 @@ def set_sep3(event):
 sep3.bind("<<ComboboxSelected>>", set_sep3)
 
 ## row 8
-ttk.Label(mainframe, text="Output Folder").grid(column=1, row=8, sticky=W)
+ttk.Label(mainframe, text="Output folder").grid(column=1, row=8, sticky=W)
 
 ## row 9
 outfolder=ttk.Entry(mainframe)
@@ -193,17 +194,6 @@ def set_choice(event):
 choice.bind("<<ComboboxSelected>>", set_choice)
 
 
-def open_csv():
-    print(spectra_sep, spot_sep, mass_sep)
-    df = pd.read_csv(spectra_file, sep = spectra_sep)
-    print(df.columns)
-    df = pd.read_csv(spot_file, sep = spot_sep)
-    print(df.columns)
-    df = pd.read_csv(mass_file, sep = mass_sep)
-    print(df.columns)
-
-def pr():
-    print(spectra_sep, spot_sep, mass_sep, outputtype)
 
 
 def run_function():
@@ -233,8 +223,8 @@ def run_function():
     #s.configure('TProgressbar', text = '100 %')
     progressbar['value'] = 100
     root.update_idletasks()
-    print("Completed. You can quit now.")
-    exit
+    print("Completed.")
+    return
 
 #s = ttk.Style()
 #s.theme_use("default")
@@ -250,5 +240,87 @@ ttk.Button(mainframe, text="Run", command=run_function).grid(column=2, row=11)
 ttk.Button(mainframe, text="Quit", command=root.destroy).grid(column=2, row=13)
 
 
+### add cross-sample correlation
+ttk.Label(mainframe, text=".pickle file is saved in output folder.").grid(column=1, row=14, sticky=W)
+ttk.Label(mainframe, text="To calculate cross-sample correlation:").grid(column=1, row=15, sticky=W)
+
+## row 16
+ttk.Label(mainframe, text="1st sample pickle file").grid(column=1, row=16, sticky=W)
+
+## row 17
+ent5=ttk.Entry(mainframe)
+ent5.grid(row=17,column=1, sticky=W)
+
+pickle_1_file = ""
+def browsefunc5():
+    global pickle_1_file
+    filename = filedialog.askopenfilename(filetypes=(("pickle files","*.pickle"),("All files","*.*")))
+    ent5.insert(END, filename) # add this
+    pickle_1_file = filename
+
+
+b5=ttk.Button(mainframe,text="Browse",command=browsefunc5)
+b5.grid(row=17,column=2, sticky=W)
+
+
+   
+
+## row 18
+ttk.Label(mainframe, text="2nd sample pickle file").grid(column=1, row=18, sticky=W)
+
+## row 19
+ent6=ttk.Entry(mainframe)
+ent6.grid(row=19,column=1, sticky=W)
+
+pickle_2_file = ""
+def browsefunc6():
+    global pickle_2_file
+    filename = filedialog.askopenfilename(filetypes=(("pickle files","*.pickle"),("All files","*.*")))
+    ent6.insert(END, filename) # add this
+    pickle_2_file = filename
+
+
+b6=ttk.Button(mainframe,text="Browse",command=browsefunc6)
+b6.grid(row=19,column=2, sticky=W)
+
+## row 20
+ttk.Label(mainframe, text="Correlation output folder").grid(column=1, row=20, sticky=W)
+
+## row 21
+outfolder2=ttk.Entry(mainframe)
+outfolder2.grid(row=21,column=1, sticky=W)
+
+folder_name_2 = ""
+def browsefunc7():
+    global folder_name_2
+    filename = filedialog.askdirectory()
+    outfolder2.insert(END, filename) # add this
+    folder_name_2 = filename
+
+
+b7=ttk.Button(mainframe,text="Browse",command=browsefunc7)
+b7.grid(row=21,column=2, sticky=W)
+
+def run2():
+    progressbar2['value'] = 10
+    root.update_idletasks()
+    time.sleep(0.5)
+
+    correlation(pickle_1_file, pickle_2_file, folder_name_2)
+    
+    progressbar2['value'] = 100
+    root.update_idletasks()
+    print("Cross-sample correlation is completed.")
+    print("You can quit now.")
+    return
+
+progressbar2 = ttk.Progressbar(mainframe, length = 200, mode = 'determinate')
+progressbar2.grid(column=2, row = 22)
+#progressbar.pack(ipady = 10)
+
+ttk.Button(mainframe, text="Calculate cross-sample Correlation", command=run2).grid(column=2, row=23)
+
+
+ttk.Button(mainframe, text="Quit", command=root.destroy).grid(column=2, row=24)
 
 root.mainloop()    

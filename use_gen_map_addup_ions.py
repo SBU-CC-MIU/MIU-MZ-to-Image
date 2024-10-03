@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sn
 import matplotlib.pyplot as plt
 import numpy as np
+import pickle
 from gen_map_gui import gen_map
 from skimage.restoration import denoise_tv_bregman
 from sklearn.cluster import DBSCAN
@@ -111,6 +112,12 @@ def use_gen_map_addup_ions(spectra_filename, spots_filename, mass_filename, spec
         ##
         j += 1
 
+    # save data for cross-sample correlation
+    spectra_filename = spectra_filename.split("/")[-1]    
+    with open(out_dir + "/" + spectra_filename[:-8] + ".pickle", "wb") as handle:
+        pickle.dump(maps_all, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
+    # 1-sample correlation
     for key in maps_all.keys():
         flattened = maps_all[key].flatten()
         maps_all[key] = flattened[flattened > -1]

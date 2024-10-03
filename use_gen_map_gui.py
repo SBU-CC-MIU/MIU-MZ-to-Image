@@ -4,6 +4,7 @@ import pandas as pd
 import seaborn as sn
 import matplotlib.pyplot as plt
 import numpy as np
+import pickle
 from gen_map_gui import gen_map
 from skimage.restoration import denoise_tv_bregman
 from sklearn.cluster import DBSCAN
@@ -83,7 +84,7 @@ def use_gen_map(spectra_filename, spots_filename, mass_filename, spectra_sep = '
                 
 
             if v95_max > 0:
-                maps_all[masses.iloc[j, 4] + masses.iloc[j, 5][1:]] = after_noise
+                maps_all[masses.iloc[j, 4] + masses.iloc[j, 5]] = after_noise
             
             ax = sn.heatmap(after_noise, vmax = v95_max, square = True, cmap = 'rainbow')
             plt.ylim(0, added_map.shape[0])
@@ -105,7 +106,13 @@ def use_gen_map(spectra_filename, spots_filename, mass_filename, spectra_sep = '
             ##
             added_map = np.zeros((1, 1))
             v95_max = 0
+    
+    # save data for cross-sample correlation
+    spectra_filename = spectra_filename.split("/")[-1]    
+    with open(out_dir + "/" + spectra_filename[:-8] + ".pickle", "wb") as handle:
+        pickle.dump(maps_all, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+   # 1-sample correlation     
     maps_flat = dict()
     for key in maps_all.keys():
         flattened = maps_all[key].flatten()

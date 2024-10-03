@@ -7,13 +7,13 @@ import numpy as np
 
 
 def select_mz(spec_file, mass_file, spec_sep = ';', mass_sep = ','):
-
     os.system("grep m/z " + spec_file + " > mz")
     
     print("m/z is written in a file mz.")
     
     f = open("mz", "r")
     mz = f.readline()
+    mz = mz.rstrip("\n")
     mz = mz.split(spec_sep)
     f.close() 
     
@@ -69,5 +69,5 @@ def select_mz(spec_file, mass_file, spec_sep = ';', mass_sep = ','):
     
     temp_name2 = spec_file[:-4] + "_ind.csv"
     select_mz.to_csv(temp_name2, sep = spec_sep, index = False)
-    
+   
     print("Selected spectroscopy data is written in " + temp_name + ".")
