@@ -28,7 +28,7 @@ The program will ask for spectroscopy data, a file containing region spots, and 
 
 Images then will be generated in the output folder you specified. Correlations and clustering results will be saved in the same folder.
 
-After running the first step, a pickle file containing the selected raw data will be saved in the output folder too. If cross-sample correlation is to be calculated, provide the program the pickle files from two samples. 
+After running the first step, a pickle file containing the selected raw data will be saved in the output folder too. If cross-sample correlation is to be calculated, run the first step for the two samples separately, and then provide the program the pickle files from two samples. 
 
 ## Example output:
 ![alt text](https://github.com/SBU-CC-MIU/MIU-MZ-to-Image/blob/main/images/11_SM(d18-1-16-0)%2BH.jpg)
