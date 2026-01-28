@@ -44,6 +44,11 @@ def use_gen_map_addup_ions(spectra_filename, spots_filename, mass_filename, spec
 
 
         plt.figure(figsize=(6.4, 5.2))
+        # changed font 01/28/2026
+        sn.set(font_scale=2)
+        sn.set_style('ticks')
+        plt.subplots_adjust(bottom=0.15)
+        
         ax = sn.heatmap(added_map, vmax = v95_max, square = True, cmap = 'rainbow')
         plt.ylim(0, added_map.shape[0])
         #title = "m/z: " + str(round(masses.iloc[j, 0], 4)) + '\n' + masses.iloc[j, 4] + masses.iloc[j, 5][1:]
@@ -73,6 +78,11 @@ def use_gen_map_addup_ions(spectra_filename, spots_filename, mass_filename, spec
                     added_map[l2, n2] = 0
 
         plt.figure(figsize=(6.4, 5.2))
+        # changed font 01/28/2026
+        sn.set(font_scale=2)
+        sn.set_style('ticks')
+        plt.subplots_adjust(bottom=0.15)
+        
         after_noise = denoise_tv_bregman(added_map, weight=0.03)
         
         # restore no data region
